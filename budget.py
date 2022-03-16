@@ -23,17 +23,29 @@ class Category:
 
     def check_funds(self, amount):
         if self.budget >= amount:
-          print("TRUE")
+          # print("TRUE")
           return True
         else:
-          print("FALSE")
+          # print("FALSE")
           return False
 
 
     def __str__(self):
 
-        title = self.name.center(30, "*")
-        return title
+        title = self.name.center(30, "*") + "\n"
+        transactions = ""
+        for transaction in self.ledger:
+      
+          if len(transaction['description']) < 23:
+              transactions += str(transaction['description']) + spaces(transaction) + str(transaction['amount']) + "\n"
+          else:
+              transactions += str(transaction['description'])[0:23] + (7 - len(str(transaction['amount']))) * " " + str(transaction['amount']) + "\n"
+          
+        total = "Total: " + str(self.budget)
+        message = title + transactions + total 
+
+        
+        return message
         
 
       
@@ -50,3 +62,7 @@ class Category:
 
 def create_spend_chart(categories):
     pass
+
+def spaces(transaction):
+
+  return (30 - len(str(transaction['description']) + str(transaction['amount']))) * " "
