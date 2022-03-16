@@ -12,7 +12,7 @@ class Category:
 
     def withdraw(self, amount, description = ""):
       if self.check_funds(amount) == True:
-        self.ledger.append(amount * -1)
+        self.ledger.append({"amount": -1 * amount , "description": description})
         self.budget -= amount
         return True
       else:
@@ -28,7 +28,12 @@ class Category:
         else:
           print("FALSE")
           return False
-        
+
+
+    def __str__(self):
+
+        title = self.name.center(30, "*")
+        return title
         
 
       

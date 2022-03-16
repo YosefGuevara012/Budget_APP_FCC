@@ -6,10 +6,11 @@ import budget
 
 food = budget.Category("Food")
 food.deposit(1000, "initial deposit")
-food.check_funds(500)
-food.check_funds(1500)
-food.withdraw(500)
-print(food.budget)
+food.withdraw(10.15, "groceries")
+food.withdraw(15.89, "restaurant and more food")
+food.withdraw(50.00, "Transfer to Clothing")
+print(food)
+
 '''
 food = budget.Category("Food")
 food.deposit(1000, "initial deposit")
