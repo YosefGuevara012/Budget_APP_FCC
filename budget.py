@@ -10,8 +10,8 @@ class Category:
         self.ledger.append({"amount": self.amount, "description": description})
         self.budget += amount
 
-    def withdraw(self, amount):
-      if self.amount >= amount:
+    def withdraw(self, amount, description = ""):
+      if self.check_funds(amount) == True:
         self.ledger.append(amount * -1)
         self.budget -= amount
         return True
@@ -20,6 +20,16 @@ class Category:
 
     def get_balance(self):
         return self.budget
+
+    def check_funds(self, amount):
+        if self.budget >= amount:
+          print("TRUE")
+          return True
+        else:
+          print("FALSE")
+          return False
+        
+        
 
       
         
@@ -34,3 +44,4 @@ class Category:
 
 
 def create_spend_chart(categories):
+    pass
