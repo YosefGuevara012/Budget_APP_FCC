@@ -60,9 +60,11 @@ def create_spend_chart(categories):
 
   
     total_expenses = 0
+    strings = []
   
     for category in categories:
         total_expenses += category.withdraws
+        strings.append(category.name)
       
     pct_category = []
 
@@ -78,7 +80,7 @@ def create_spend_chart(categories):
             rounded.append((pct // 10) * 10 )
 
       
-    print(rounded)
+    # print(rounded)
   
     title = "Percentage spent by category\n"
 
@@ -103,7 +105,28 @@ def create_spend_chart(categories):
         expenses += "\n" 
 
     line = (" "* 4) + "-" + ("---"* len(rounded)) + "\n"
+
   
-    return title + expenses + line
+    longest = 0
+    for text in strings:
+      if len(text) > longest:
+        longest = len(text)
+        
+
+    for i in range(len(strings)):
+      strings[i] = strings[i] + " " * (longest - len(strings[i]))
+
+    
+    bottom = ""
+
+    for i in range(len(strings[0])):
+      bottom += "    "
+      for text in strings:
+        bottom += " " + text[i] + " "
+
+      bottom += "\n"
+
+
+    return title + expenses + line + bottom
 
     
