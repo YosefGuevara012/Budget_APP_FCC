@@ -8,8 +8,17 @@ food = budget.Category("Food")
 food.deposit(1000, "initial deposit")
 food.withdraw(10.15, "groceries")
 food.withdraw(15.89, "restaurant and more food")
-food.withdraw(50.00, "Transfer to Clothing")
 print(food)
+
+clothing = budget.Category("Clothing")
+food.transfer(50, clothing)
+
+clothing.withdraw(25.55)
+clothing.withdraw(100)
+print(food)
+print(clothing)
+
+print(clothing.name)
 
 '''
 food = budget.Category("Food")

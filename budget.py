@@ -30,6 +30,11 @@ class Category:
           return False
 
 
+    def transfer(self, amount, category):
+        self.withdraw(amount, "Transfer to " + str(category.name))
+        category.deposit(amount, "Transfer from " + str(self.name))
+        
+  
     def __str__(self):
 
         title = self.name.center(30, "*") + "\n"
