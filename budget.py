@@ -86,11 +86,21 @@ def create_spend_chart(categories):
                    " 50| ", " 40| ", " 30| ", " 20| ", " 10| ", 
                    "  0| "]
 
-    expenses = ""
 
+    expenses = ""
+    counter = 110
     for percentage in percentages:
       
-        expenses += percentage
+        counter = counter - 10
+        expenses += percentage 
+
+        for value in rounded:
+          if counter > value:
+            expenses += "  "
+          else:
+            expenses += "o "
+            
+        expenses += "\n" 
 
 
     return title + expenses
