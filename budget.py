@@ -33,8 +33,8 @@ class Category:
 
 
     def transfer(self, amount, category):
-        self.withdraw(amount, "Transfer to " + str(category.name))
         category.deposit(amount, "Transfer from " + str(self.name))
+        return self.withdraw(amount, "Transfer to " + str(category.name))
         
   
     def __str__(self):
