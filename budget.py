@@ -44,10 +44,10 @@ class Category:
         for transaction in self.ledger:
       
           if len(transaction['description']) < 23:
-              spaces = (30 - len(str(transaction['description']) + str(transaction['amount']))) * " "
-              transactions += str(transaction['description']) + spaces + str(transaction['amount']) + "\n"
+              spaces = (30 - len(str(transaction['description']) + format(transaction['amount'], '.2f'))) * " "
+              transactions += str(transaction['description']) + spaces + format(transaction['amount'], '.2f') + "\n"
           else:
-              transactions += str(transaction['description'])[0:23] + (7 - len(str(transaction['amount']))) * " " + str(transaction['amount']) + "\n"
+              transactions += str(transaction['description'])[0:23] + (7 - len(format(transaction['amount'], '.2f'))) * " " + format(transaction['amount'], '.2f') + "\n"
           
         total = "Total: " + str(self.budget)   
         balance = title + transactions + total 
