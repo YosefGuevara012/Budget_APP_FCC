@@ -96,13 +96,14 @@ def create_spend_chart(categories):
 
         for value in rounded:
           if counter > value:
-            expenses += "  "
+            expenses += "   "
           else:
-            expenses += "o "
+            expenses += "o  "
             
         expenses += "\n" 
 
-
-    return title + expenses
+    line = (" "* 4) + "-" + ("---"* len(rounded)) + "\n"
+  
+    return title + expenses + line
 
     
