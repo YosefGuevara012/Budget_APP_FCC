@@ -57,30 +57,41 @@ class Category:
       
 def create_spend_chart(categories):
   
+
+  
+    total_expenses = 0
+  
+    for category in categories:
+        total_expenses += category.withdraws
+      
+    pct_category = []
+
+    for category in categories:
+        pct_category.append(round(category.withdraws/total_expenses * 100, 0))
+      
+
+    rounded = []
+    for pct in pct_category:
+        if pct % 10 > 5:
+            rounded.append((pct // 10 + 1) * 10 )
+        else:
+            rounded.append((pct // 10) * 10 )
+
+      
+    print(rounded)
+  
+    title = "Percentage spent by category\n"
+
     percentages = ["100| ", " 90| ", " 80| ", " 70| ", " 60| ", 
                    " 50| ", " 40| ", " 30| ", " 20| ", " 10| ", 
                    "  0| "]
 
     expenses = ""
-    total_expenses = 0
-  
-    for category in categories:
-      total_expenses += category.withdraws
-      
-
-    pct_category = []
-
-    for category in categories:
-      pct_category.append(round(category.withdraws/total_expenses * 100, 0))
-      
-    print(pct_category)
-  
-    title = "Percentage spent by category\n"
 
     for percentage in percentages:
       
-      expenses += percentage 
-      
+        expenses += percentage
+
 
     return title + expenses
 
