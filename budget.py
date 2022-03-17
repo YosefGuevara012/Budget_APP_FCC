@@ -4,6 +4,7 @@ class Category:
         self.name = name
         self.ledger = []
         self.budget = 0
+        self.withdraws = 0
 
     def deposit(self, amount, description = ""):
         self.amount = amount
@@ -14,6 +15,7 @@ class Category:
       if self.check_funds(amount) == True:
         self.ledger.append({"amount": -1 * amount , "description": description})
         self.budget -= amount
+        self.withdraws += amount
         return True
       else:
         return False
@@ -42,32 +44,44 @@ class Category:
         for transaction in self.ledger:
       
           if len(transaction['description']) < 23:
-              transactions += str(transaction['description']) + spaces(transaction) + str(transaction['amount']) + "\n"
+              spaces = (30 - len(str(transaction['description']) + str(transaction['amount']))) * " "
+              transactions += str(transaction['description']) + spaces + str(transaction['amount']) + "\n"
           else:
               transactions += str(transaction['description'])[0:23] + (7 - len(str(transaction['amount']))) * " " + str(transaction['amount']) + "\n"
           
-        total = "Total: " + str(self.budget)
-        message = title + transactions + total 
+        total = "Total: " + str(self.budget)   
+        balance = title + transactions + total 
 
-        
-        return message
-        
+        return balance
 
       
-        
-
-        
-        
-      
-      
-
-
-
-
-
 def create_spend_chart(categories):
-    pass
+  
+    percentages = ["100| ", " 90| ", " 80| ", " 70| ", " 60| ", 
+                   " 50| ", " 40| ", " 30| ", " 20| ", " 10| ", 
+                   "  0| "]
 
-def spaces(transaction):
+    expenses = ""
+    total_expenses = 0
+  
+    for category in categories:
+      total_expenses += category.withdraws
+      
 
-  return (30 - len(str(transaction['description']) + str(transaction['amount']))) * " "
+    pct_category = []
+
+    for category in categories:
+      pct_category.append(round(category.withdraws/total_expenses * 100, 0))
+      
+    print(pct_category)
+  
+    title = "Percentage spent by category\n"
+
+    for percentage in percentages:
+      
+      expenses += percentage 
+      
+
+    return title + expenses
+
+    
